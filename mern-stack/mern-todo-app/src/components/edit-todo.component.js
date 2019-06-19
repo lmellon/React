@@ -70,6 +70,7 @@ export default class EditTodo extends Component {
             todo_priority: this.state.todo_priority,
             todo_completed: this.state.todo_completed
         };
+        // axios sends info back to database
         axios.post('http://localhost:4000/todos/update/' + this.props.match.params.id, obj)
             .then(response => console.log(response.data));
         this.props.history.push('/');
