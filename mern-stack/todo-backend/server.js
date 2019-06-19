@@ -59,7 +59,7 @@ todoRoutes.route('/update/:id').post(function(req, res) {
 
             todo.save()
             .then(todo => {
-                res.jsaon("Todo updated");
+                res.json("Todo updated");
             })
             .catch(err => {
                 res.status(400).send("update not possible");
