@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  { Consumer } from '../context';
+import axios from 'axios';
 
 export default class Todo extends Component {
     style = () => {
@@ -12,18 +13,19 @@ export default class Todo extends Component {
     }
 
     remove = (id, dispatch) => {
-        dispatch({ type: "REMOVE", payload: id })
+        axios.delete(`/todos/${id}`)
+        .then( () => dispatch({ type: "REMOVE", payload: id }))
     }
 
     render() {
-        const {title, id } = this.props.todo
+        const {title, _id } = this.props.todo
         return(
             <Consumer>{ value => {
                 const { dispatch } = value
                 return <h3 style={this.style()}>
-                <i class="fa fa-times-circle" onClick={this.remove.bind(this, id, dispatch)}></i>
+                <i class="fa fa-times-circle" onClick={this.remove.bind(this, _id, dispatch)}></i>
                 {title}
-                <input type="checkbox" onChange={this.toggle.bind(this, id, dispatch)}/>
+                <input type="checkbox" onChange={this.toggle.bind(this, _id, dispatch)}/>
             </h3>
         }}</Consumer>
         )
