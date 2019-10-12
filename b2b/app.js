@@ -14,11 +14,30 @@ class Header extends React.Component {
 class TaskList extends React.Component {
     render() {
         return(
-            <h3>TaskList component</h3>
+            <div>TaskList component
+                {this.props.todoList.map((task, index) => {
+                    return(
+                        <Task
+                        task={task}
+                        key={index} />
+                    )
+                })}
+            </div>
         )
     }
 }
 
+class Task extends React.Component {
+    render() {
+        return(
+                <div>
+                    {this.props.task.description}
+                    <input type='checkbox' />
+                </div>
+
+        )
+    }
+}
 
 class IndexView extends React.Component {
     constructor(props) {
